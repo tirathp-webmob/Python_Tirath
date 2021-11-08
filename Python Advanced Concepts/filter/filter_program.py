@@ -4,3 +4,7 @@ x = lambda n: n % 2 != 0
 answer = filter(x, nums)  # Second value passed should be iterable
 print(list(answer))
 print()
+
+y = lambda n:n / 2 > 3
+ans = filter(y,nums)
+print(list(ans))
