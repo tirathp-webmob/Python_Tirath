@@ -12,3 +12,4 @@ q = 50
 r = 30
 print('max is',max(p,q,r))
 print('min is',min(p,q,r))
+print()
