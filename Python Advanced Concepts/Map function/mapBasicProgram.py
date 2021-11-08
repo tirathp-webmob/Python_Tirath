@@ -4,3 +4,4 @@ def power_of_number(a):
 
 answer = map(power_of_number, {2, 3})
 print(list(answer))
+print()
