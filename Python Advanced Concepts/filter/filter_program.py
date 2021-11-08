@@ -8,4 +8,3 @@ print()
 y = lambda n:n / 2 > 3
 ans = filter(y,nums)
 print(list(ans))
-print()
