@@ -7,4 +7,3 @@ print(list(x))
 string_word = ['sat','bat','cat','mat']
 ans = list(map(list,string_word))
 print(ans)
-print()

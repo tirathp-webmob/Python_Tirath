@@ -3,7 +3,7 @@ a = 10
 print(type(a))
 a=b=c=100
 print(a,b,c)
-
+print()
 z = 20.5
 print(round(z))
 

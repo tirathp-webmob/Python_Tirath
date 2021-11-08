@@ -19,4 +19,3 @@ elif amds == 3:
 elif amds == 2:
     print(division(user_input1, user_input2))
 
-print()
