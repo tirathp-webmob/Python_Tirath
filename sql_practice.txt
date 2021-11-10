@@ -1,0 +1,65 @@
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| books              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| tirath             |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use books;
+Database changed
+mysql> insert into books(name,author,id) values('Harry Potter','JK rolling',1);
+ERROR 1146 (42S02): Table 'books.books' doesn't exist
+mysql> insert into books(name varchar(20),author varchar(20),id varchar(5)) values('Harry Potter','JK rolling',1);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar(20),author varchar(20),id varchar(5)) values('Harry Potter','JK rolling'' at line 1
+mysql> create table book_list(name varchar(20), id varchar(5));
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> describe book_list;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(20) | YES  |     | NULL    |       |
+| id    | varchar(5)  | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> insert into book_list values('Harry Potter',1);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into book_list values('Wings of Fire',2);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into book_list values('Rich Dad,Poor Dad',3);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> select * from book_list;
++-------------------+------+
+| name              | id   |
++-------------------+------+
+| Harry Potter      | 1    |
+| Wings of Fire     | 2    |
+| Rich Dad,Poor Dad | 3    |
++-------------------+------+
+3 rows in set (0.00 sec)
+
+mysql> update book_list set id = 4 where name = 'Harry Potter';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from book_list;
++-------------------+------+
+| name              | id   |
++-------------------+------+
+| Harry Potter      | 4    |
+| Wings of Fire     | 2    |
+| Rich Dad,Poor Dad | 3    |
++-------------------+------+
+3 rows in set (0.00 sec)
+

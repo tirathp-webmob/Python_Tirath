@@ -1,0 +1,275 @@
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| books              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| tirath             |
++--------------------+
+6 rows in set (0.01 sec)
+
+mysql> select * from books;
+ERROR 1046 (3D000): No database selected
+mysql> use books;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select * from books;
+ERROR 1146 (42S02): Table 'books.books' doesn't exist
+mysql> describe books;
+ERROR 1146 (42S02): Table 'books.books' doesn't exist
+mysql> show books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'books' at line 1
+mysql> select * from book_list
+    -> ;
++-------------------+------+
+| name              | id   |
++-------------------+------+
+| Harry Potter      | 4    |
+| Wings of Fire     | 2    |
+| Rich Dad,Poor Dad | 3    |
++-------------------+------+
+3 rows in set (0.01 sec)
+
+mysql> select * from book_lis
+    -> 
+    -> ;
+ERROR 1146 (42S02): Table 'books.book_lis' doesn't exist
+mysql> select * from book_list;
++-------------------+------+
+| name              | id   |
++-------------------+------+
+| Harry Potter      | 4    |
+| Wings of Fire     | 2    |
+| Rich Dad,Poor Dad | 3    |
++-------------------+------+
+3 rows in set (0.00 sec)
+
+mysql> update book_list set id = 1 where name = 'Harry Potter';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from book_list;
++-------------------+------+
+| name              | id   |
++-------------------+------+
+| Harry Potter      | 1    |
+| Wings of Fire     | 2    |
+| Rich Dad,Poor Dad | 3    |
++-------------------+------+
+3 rows in set (0.00 sec)
+
+mysql> DELETE FROM book_list WHERE ID = 3;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from book_list;
++---------------+------+
+| name          | id   |
++---------------+------+
+| Harry Potter  | 1    |
+| Wings of Fire | 2    |
++---------------+------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO book_list VALUES('Think and Grow Rich','3');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from book_list;
++---------------------+------+
+| name                | id   |
++---------------------+------+
+| Harry Potter        | 1    |
+| Wings of Fire       | 2    |
+| Think and Grow Rich | 3    |
++---------------------+------+
+3 rows in set (0.00 sec)
+
+mysql> create database fooditems;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| books              |
+| fooditems          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| tirath             |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use fooditems;
+Database changed
+mysql> insert into fooditems(food_name varchar(20), food_id varchar(5), food_desc varchar(30)) values('Burger', '1' , 'Aloo tikki');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar(20), food_id varchar(5), food_desc varchar(30)) values('Burger', '1' , '' at line 1
+mysql> insert into fooditems(food_name varchar(20), food_id varchar(5), food_desc varchar(30)) values('Burger', 1 , 'Aloo tikki');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar(20), food_id varchar(5), food_desc varchar(30)) values('Burger', 1 , 'Al' at line 1
+mysql> insert into fooditems(food_name, food_id, food_desc) values('Burger', 1 , 'Aloo tikki');
+ERROR 1146 (42S02): Table 'fooditems.fooditems' doesn't exist
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table food;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table food(food_name varchar(20), food_id varchar(5), food_desc varchar(30));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_fooditems |
++---------------------+
+| food                |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> show food;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'food' at line 1
+mysql> select * from food;
+Empty set (0.00 sec)
+
+mysql> insert into food values('Burger','1','Aloo tikki')
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from food;
++-----------+---------+------------+
+| food_name | food_id | food_desc  |
++-----------+---------+------------+
+| Burger    | 1       | Aloo tikki |
++-----------+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> insert into food values('Pizza','2','Cheesey Onion');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into food values('Pasta','3','Double Cheese');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from food;
++-----------+---------+---------------+
+| food_name | food_id | food_desc     |
++-----------+---------+---------------+
+| Burger    | 1       | Aloo tikki    |
+| Pizza     | 2       | Cheesey Onion |
+| Pasta     | 3       | Double Cheese |
++-----------+---------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into food values('Tea','4','Masala chai');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from food;
++-----------+---------+---------------+
+| food_name | food_id | food_desc     |
++-----------+---------+---------------+
+| Burger    | 1       | Aloo tikki    |
+| Pizza     | 2       | Cheesey Onion |
+| Pasta     | 3       | Double Cheese |
+| Tea       | 4       | Masala chai   |
++-----------+---------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> select food_id from food;
++---------+
+| food_id |
++---------+
+| 1       |
+| 2       |
+| 3       |
+| 4       |
++---------+
+4 rows in set (0.00 sec)
+
+mysql> 
+
+mysql> select * from food;
++-----------+---------+---------------+
+| food_name | food_id | food_desc     |
++-----------+---------+---------------+
+| Burger    | 1       | Aloo tikki    |
+| Pizza     | 2       | Cheesey Onion |
+| Pasta     | 3       | Double Cheese |
+| Tea       | 5       | Masala chai   |
+| Tea       | 6       | Lemon chai    |
+| Tea       | 7       | Regular chai  |
++-----------+---------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> select food_id from food where food_name = 'Tea';
++---------+
+| food_id |
++---------+
+| 5       |
+| 6       |
+| 7       |
++---------+
+
+mysql> select food_id from food where food_name = 'Tea' and food_desc = 'Masala chai';
++---------+
+| food_id |
++---------+
+| 5       |
++---------+
+
+select * from food order by food_id;
++-----------+---------+---------------+
+| food_name | food_id | food_desc     |
++-----------+---------+---------------+
+| Burger    | 1       | Aloo tikki    |
+| Pizza     | 2       | Cheesey Onion |
+| Pasta     | 3       | Double Cheese |
+| Tea       | 5       | Masala chai   |
+| Tea       | 6       | Lemon chai    |
+| Tea       | 7       | Regular chai  |
++-----------+---------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from food order by food_id desc;
++-----------+---------+---------------+
+| food_name | food_id | food_desc     |
++-----------+---------+---------------+
+| Tea       | 7       | Regular chai  |
+| Tea       | 6       | Lemon chai    |
+| Tea       | 5       | Masala chai   |
+| Pasta     | 3       | Double Cheese |
+| Pizza     | 2       | Cheesey Onion |
+| Burger    | 1       | Aloo tikki    |
++-----------+---------+---------------+
+
+mysql> select * from food order by food_name,food_desc;
++-----------+---------+---------------+
+| food_name | food_id | food_desc     |
++-----------+---------+---------------+
+| Burger    | 1       | Aloo tikki    |
+| Pasta     | 3       | Double Cheese |
+| Pizza     | 2       | Cheesey Onion |
+| Tea       | 6       | Lemon chai    |
+| Tea       | 5       | Masala chai   |
+| Tea       | 7       | Regular chai  |
++-----------+---------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from food order by food_name asc ,food_desc desc;
++-----------+---------+---------------+
+| food_name | food_id | food_desc     |
++-----------+---------+---------------+
+| Burger    | 1       | Aloo tikki    |
+| Pasta     | 3       | Double Cheese |
+| Pizza     | 2       | Cheesey Onion |
+| Tea       | 7       | Regular chai  |
+| Tea       | 5       | Masala chai   |
+| Tea       | 6       | Lemon chai    |
++-----------+---------+---------------+
+6 rows in set (0.00 sec)
+
+
+
+

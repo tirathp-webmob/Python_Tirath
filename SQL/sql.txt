@@ -1,0 +1,100 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| tirath             |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> use tirath;
+Database changed
+mysql> clear
+mysql> create table list()
+    -> create table list()
+    -> create table list(name varchar(10), email varchar(10))
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+create table list()
+create table list(name varchar(10), email varchar(10))' at line 1
+mysql> create table list(name varchar(20), email varchar(10));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> describe list;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(20) | YES  |     | NULL    |       |
+| email | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> insert into list('Tirath','a@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Tirath','a@gmail.com')' at line 1
+mysql> insert into list values('Tirath','a@gmail.com');
+ERROR 1406 (22001): Data too long for column 'email' at row 1
+mysql> insert into list values('Tirath','a@gmal');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from list;
++--------+--------+
+| name   | email  |
++--------+--------+
+| Tirath | a@gmal |
++--------+--------+
+1 row in set (0.00 sec)
+
+mysql> update list set email = 'abcd' where name = 'Tirath';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from list;
++--------+-------+
+| name   | email |
++--------+-------+
+| Tirath | abcd  |
++--------+-------+
+1 row in set (0.00 sec)
+
+
+insert into list values('ram','pqrs');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from list;
++--------+-------+
+| name   | email |
++--------+-------+
+| Tirath | abcd  |
+| ram    | pqrs  |
++--------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into list values('het','pqrste');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from list;
++--------+--------+
+| name   | email  |
++--------+--------+
+| Tirath | abcd   |
+| ram    | pqrs   |
+| het    | pqrste |
++--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> delete from list where name = 'het';
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from list;
++--------+-------+
+| name   | email |
++--------+-------+
+| Tirath | abcd  |
+| ram    | pqrs  |
++--------+-------+
+2 rows in set (0.01 sec)
+
+
