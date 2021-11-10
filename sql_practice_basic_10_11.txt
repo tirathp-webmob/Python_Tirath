@@ -375,3 +375,77 @@ mysql> select * from food where food_id between 2 and 5;
 +-----------+---------+---------------+
 
 
+mysql> select * from food;
++-----------+---------+---------------+
+| food_name | food_id | food_desc     |
++-----------+---------+---------------+
+| Burger    | 1       | Aloo tikki    |
+| Pizza     | 2       | Cheesey Onion |
+| Pasta     | 3       | Double Cheese |
+| Tea       | 5       | Masala chai   |
+| Tea       | 6       | Lemon chai    |
+| Tea       | 7       | Regular chai  |
++-----------+---------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from id where id > 3;
+ERROR 1146 (42S02): Table 'fooditems.id' doesn't exist
+mysql> select * from food where id > 3;
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+mysql> select * from food where food_id > 3;
++-----------+---------+--------------+
+| food_name | food_id | food_desc    |
++-----------+---------+--------------+
+| Tea       | 5       | Masala chai  |
+| Tea       | 6       | Lemon chai   |
+| Tea       | 7       | Regular chai |
++-----------+---------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from food where food_id in(select id from food where food_name = 'Tea');
+ERROR 1054 (42S22): Unknown column 'id' in 'field list'
+mysql> select * from food where food_id in(select food_id from food where food_n
+ame = 'Tea');
++-----------+---------+--------------+
+| food_name | food_id | food_desc    |
++-----------+---------+--------------+
+| Tea       | 5       | Masala chai  |
+| Tea       | 6       | Lemon chai   |
+| Tea       | 7       | Regular chai |
++-----------+---------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> create table food_cpy(food_name varchar(20), food_id varchar(5), food_desc varchar(30));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> insert into food_cpy select * from food;
+Query OK, 6 rows affected (0.02 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from food_cpy;
++-----------+---------+---------------+
+| food_name | food_id | food_desc     |
++-----------+---------+---------------+
+| Burger    | 1       | Aloo tikki    |
+| Pizza     | 2       | Cheesey Onion |
+| Pasta     | 3       | Double Cheese |
+| Tea       | 5       | Masala chai   |
+| Tea       | 6       | Lemon chai    |
+| Tea       | 7       | Regular chai  |
++-----------+---------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from food;
++-----------+---------+---------------+
+| food_name | food_id | food_desc     |
++-----------+---------+---------------+
+| Burger    | 1       | Aloo tikki    |
+| Pizza     | 2       | Cheesey Onion |
+| Pasta     | 3       | Double Cheese |
+| Tea       | 5       | Masala chai   |
+| Tea       | 6       | Lemon chai    |
+| Tea       | 7       | Regular chai  |
++-----------+---------+---------------+
+6 rows in set (0.00 sec)
+
+
