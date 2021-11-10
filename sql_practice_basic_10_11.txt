@@ -270,6 +270,108 @@ mysql> select * from food order by food_name asc ,food_desc desc;
 +-----------+---------+---------------+
 6 rows in set (0.00 sec)
 
+mysql> select * from food where not food_name = 'Tea';
++-----------+---------+---------------+
+| food_name | food_id | food_desc     |
++-----------+---------+---------------+
+| Burger    | 1       | Aloo tikki    |
+| Pizza     | 2       | Cheesey Onion |
+| Pasta     | 3       | Double Cheese |
++-----------+---------+---------------+
 
+mysql> select * from food where food_name like 'T%';
++-----------+---------+--------------+
+| food_name | food_id | food_desc    |
++-----------+---------+--------------+
+| Tea       | 5       | Masala chai  |
+| Tea       | 6       | Lemon chai   |
+| Tea       | 7       | Regular chai |
++-----------+---------+--------------+
+3 rows in set (0.00 sec)
+
+
+mysql> select * from food where food_desc like '%i';
++-----------+---------+--------------+
+| food_name | food_id | food_desc    |
++-----------+---------+--------------+
+| Burger    | 1       | Aloo tikki   |
+| Tea       | 5       | Masala chai  |
+| Tea       | 6       | Lemon chai   |
+| Tea       | 7       | Regular chai |
++-----------+---------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from food where food_name like 'Tea';
++-----------+---------+--------------+
+| food_name | food_id | food_desc    |
++-----------+---------+--------------+
+| Tea       | 5       | Masala chai  |
+| Tea       | 6       | Lemon chai   |
+| Tea       | 7       | Regular chai |
++-----------+---------+--------------+
+
+mysql> select concat('tirath',' ','pathak')
+    -> ;
++-------------------------------+
+| concat('tirath',' ','pathak') |
++-------------------------------+
+| tirath pathak                 |
++-------------------------------+
+1 row in set (0.01 sec)
+
+mysql> select 10*20;
++-------+
+| 10*20 |
++-------+
+|   200 |
++-------+
+
+mysql> select max(food_id) from food;
++--------------+
+| max(food_id) |
++--------------+
+| 7            |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select min(food_id) from food;
++--------------+
+| min(food_id) |
++--------------+
+| 1            |
++--------------+
+
+mysql> select sum(food_id) from food;
++--------------+
+| sum(food_id) |
++--------------+
+|           24 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select count(food_id) from food;
++----------------+
+| count(food_id) |
++----------------+
+|              6 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(food_id) from food;
++--------------+
+| avg(food_id) |
++--------------+
+|            4 |
++--------------+
+
+
+mysql> select * from food where food_id between 2 and 5;
++-----------+---------+---------------+
+| food_name | food_id | food_desc     |
++-----------+---------+---------------+
+| Pizza     | 2       | Cheesey Onion |
+| Pasta     | 3       | Double Cheese |
+| Tea       | 5       | Masala chai   |
++-----------+---------+---------------+
 
 
